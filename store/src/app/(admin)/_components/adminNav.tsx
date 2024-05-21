@@ -3,31 +3,25 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import UserDrop from "./userDrop";
 
-export default function Navbar() {
+
+export default function AdminNav() {
   return (
-    <div className="mx-4 flex items-center justify-between p-4">
-      <div>
-        <Link href="/" className="text-2xl font-bold">
-          Logo
-        </Link>
-      </div>
-      <div>
-        <MainNavbar />
-      </div>
-      <div className="flex items-center justify-end">
-        <UserDrop />
-      </div>
-    </div>
+    <nav className="mx-4 flex items-center justify-between">
+      <Link href="/">Logo</Link>
+      <MainNavbarAdmin />
+    </nav>
   );
 }
 
-export function MainNavbar({
+
+
+export function MainNavbarAdmin({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   const pathname = usePathname();
+ 
 
   const routes = [
     {
@@ -53,7 +47,7 @@ export function MainNavbar({
           key={route.href}
           href={route.href}
           className={cn(
-            "text-sm font-medium transition-colors hover:text-gray-600",
+            "text-sm font-medium transition-colors hover:text-primary",
             route.active ? "text-black" : "text-muted-foreground",
           )}
         >
@@ -64,21 +58,4 @@ export function MainNavbar({
   );
 }
 
-//
-/** 
- * <LogoutLink>
-          <Button>Log out</Button>
-        </LogoutLink> 
-        
- * <LogoutLink>Log out</LogoutLink>
- * import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
- * 
- *  <LoginLink>
-          <Button>Sign in</Button>
-        </LoginLink>
-        <RegisterLink>
-          <Button>Sign up</Button>
-        </RegisterLink>
- * 
- * 
- * */
+
